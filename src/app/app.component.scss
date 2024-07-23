@@ -5,3 +5,8 @@ $hulk-green: #00991f;
 $mjolnirThor-gray: #999999;
 $hawkeye-purple: #460061;
 
+
+body {
+  @include background-image;
+  margin: 0;
+}
