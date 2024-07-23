@@ -1,0 +1,19 @@
+
+@import 'variables';
+@import 'mixins';
+
+body {
+  @include background-image;
+  height: 100vh;
+  margin: 0;
+}
+
+.page1 {
+  @include background-image;
+  height: 100vh;
+}
+
+.page2 {
+  @include background-image;
+  height: 100vh;
+}

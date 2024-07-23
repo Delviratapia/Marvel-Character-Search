@@ -7,7 +7,7 @@ import {MatCardModule} from '@angular/material/card';
  */
 @Component({
   selector: 'app-card',
-   templateUrl: './card.component.html',
+  templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 standalone: true,
   imports: [MatCardModule, MatButtonModule],
