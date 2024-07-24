@@ -34,6 +34,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+  :host{
+    height:10%
+
+  }
+
   .searchbar-items {
       display: flex;
       justify-content: center;

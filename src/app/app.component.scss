@@ -6,7 +6,12 @@ $mjolnirThor-gray: #999999;
 $hawkeye-purple: #460061;
 
 
-body {
-  @include background-image;
-  margin: 0;
+
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
