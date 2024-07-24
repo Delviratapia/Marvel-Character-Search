@@ -14,3 +14,5 @@ standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {}
+
+

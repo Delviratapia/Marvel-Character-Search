@@ -1,28 +1,34 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardComponent } from "../card/card.component";
+import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @Component({
   selector: 'app-resultsCard',
   standalone: true,
-  imports: [RouterOutlet, CardComponent],
+  imports: [RouterOutlet, CardComponent, MatPaginatorModule],
   template: `
 
+
+
+<app-card/>
+<app-card/>
+<app-card/>
+<app-card/>
+<app-card/>
+<app-card/>
+<app-card/>
     <app-card/>
     <app-card/>
     <app-card/>
     <app-card/>
     <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
+    
+    
+    
+    <mat-paginator/>
 
   
   `,
