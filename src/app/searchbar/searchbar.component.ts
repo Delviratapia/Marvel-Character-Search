@@ -22,11 +22,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     <button class="menu-button">
       <span class="material-icons">menu</span>
     </button>
-    <input type="text" placeholder="Search">
+    <form >
+    <input  type="text" placeholder="Search">
     <!-- <input type="text" placeholder="Search"> -->
-    <button class="search-button">
+    <button class="search-button" (click)="handleSearch($event)">
       <span class="material-icons">search</span>
-    </button>
+      </button>
+    </form>
+ 
+   
   </div>
 </div>
   `,
@@ -95,6 +99,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export class SearchbarComponent {
   // myControl = new FormControl('');
   // options: string[] = ['One', 'Two', 'Three'];
+  
 }
 
 

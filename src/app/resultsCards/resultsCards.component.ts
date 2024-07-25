@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardComponent } from "../card/card.component";
 import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
+import { Character } from '../character/character';
+import { CharacterService } from '../character/character.service';
 
 
 
@@ -14,7 +16,7 @@ import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
 <div class="card-container">
 
   @for(ch of characters.slice(pageStart(), pageStart()+pageSize); track characters) {
-    <app-card [name]="ch" />
+    <app-card [name]="ch.name" />
   }
       
 </div>
@@ -78,17 +80,11 @@ styles: `
 
 
 export class ResultsCardComponent {
-characters: string[] = [
-  "wolverine", "deadpool", "storm", "spiderman", "ironman", "thor", 
-  "hulk", "blackwidow", "captainamerica", "doctorstrange", "scarletwitch", 
-  "vision", "blackpanther", "antman", "wasp", "hawkeye", "falcon", 
-  "war-machine", "star-lord", "groot", "rocket"
-];
-
-
+  characters: Character[] = [];
+  charactersService = inject(CharacterService)
 
   pageEvent: PageEvent | undefined;
-  length = this.characters.length
+  length = 0
   pageSize = 5
   pageIndex = 0
 
@@ -103,6 +99,10 @@ characters: string[] = [
     return this.pageIndex * this.pageSize
   }
 
+  async ngOnInit() {
+    this.characters = await this.charactersService.GetCharacters()
+    this.length = this.characters.length
+  }
     
 
 }
