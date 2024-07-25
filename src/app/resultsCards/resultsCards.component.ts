@@ -1,42 +1,34 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CardComponent } from "../card/card.component";
-import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
+import { CardComponent } from '../card/card.component';
+import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { Character } from '../character/character';
 import { CharacterService } from '../character/character.service';
-
-
 
 @Component({
   selector: 'app-resultsCard',
   standalone: true,
   imports: [RouterOutlet, CardComponent, MatPaginatorModule],
   template: `
+    <div class="card-container">
+      @for(ch of characters.slice(pageStart(), pageStart()+pageSize); track
+      characters) {
+      <app-card [character]="ch" />
+      }
+    </div>
 
-<div class="card-container">
-
-  @for(ch of characters.slice(pageStart(), pageStart()+pageSize); track characters) {
-    <app-card [name]="ch.name" />
-  }
-      
-</div>
-
-    
-<!-- TODO: fix so it stays in the bottom, not to the right of the cards -->
-<div class="paginator-container">
-  <mat-paginator 
-  (page)="handlePageEvent($event)"
-  [length]="length"
-  [pageSize]="pageSize"
-  [pageIndex]="pageIndex"
-  />
-
-</div>
-
-  
+    <!-- TODO: fix so it stays in the bottom, not to the right of the cards -->
+    <div class="paginator-container">
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+      />
+    </div>
   `,
 
-styles: `
+  styles: `
 
 
 :host {
@@ -75,34 +67,22 @@ styles: `
 
 
 `,
-
 })
-
-
 export class ResultsCardComponent {
-  characters: Character[] = [];
-  charactersService = inject(CharacterService)
-
+  @Input() characters: Character[] = [];
+  @Input() length:number = 0
   pageEvent: PageEvent | undefined;
-  length = 0
-  pageSize = 5
-  pageIndex = 0
+  pageSize = 5;
+  pageIndex = 0;
 
-  handlePageEvent(event: PageEvent){
-    this.pageEvent = event
-    this.length = event.length
-    this.pageSize = event.pageSize
-    this.pageIndex = event.pageIndex
+  handlePageEvent(event: PageEvent) {
+    this.pageEvent = event;
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
   }
 
   pageStart(): number {
-    return this.pageIndex * this.pageSize
+    return this.pageIndex * this.pageSize;
   }
-
-  async ngOnInit() {
-    this.characters = await this.charactersService.GetCharacters()
-    this.length = this.characters.length
-  }
-    
-
 }

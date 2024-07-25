@@ -11,10 +11,30 @@ import { Character } from '../character/character';
   standalone: true,
 
   imports: [RouterOutlet, SearchbarComponent, ResultsCardComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  template: `
+    <app-searchbar (searchEvent)="handleSearch($event)" />
+    <app-resultsCard [characters]="filteredCharacters" [length]="filteredCharacters.length" />
+  `,
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit {
   title = 'angularMarvelApp';
 
+  characters: Character[] = [];
+  filteredCharacters: Character[] = [];
+  charactersService = inject(CharacterService);
+
+  async ngOnInit() {
+    this.characters = await this.charactersService.GetCharacters();
+  }
+
+  handleSearch(query: string) {
+    if(query.length === 0) {
+      this.filteredCharacters = []
+      return
+    }
+    this.filteredCharacters = this.characters.filter((item) =>
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
 }

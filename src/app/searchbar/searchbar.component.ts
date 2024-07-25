@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-searchbar',
@@ -16,23 +15,20 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
   ],
   template: `
-
-<div class="search-bar">
-  <div class="searchbar-items">
-    <button class="menu-button">
-      <span class="material-icons">menu</span>
-    </button>
-    <form >
-    <input  type="text" placeholder="Search">
-    <!-- <input type="text" placeholder="Search"> -->
-    <button class="search-button" (click)="handleSearch($event)">
-      <span class="material-icons">search</span>
-      </button>
-    </form>
- 
-   
-  </div>
-</div>
+    <div class="search-bar">
+      <div class="searchbar-items">
+        <button class="menu-button">
+          <span class="material-icons">menu</span>
+        </button>
+        <form>
+          <input type="text" placeholder="Search" (input)="onSearch($event)"/>
+          <!-- <input type="text" placeholder="Search"> -->
+          <button class="search-button">
+            <span class="material-icons">search</span>
+          </button>
+        </form>
+      </div>
+    </div>
   `,
   styles: `
 
@@ -94,12 +90,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     }
 
 
-  `
+  `,
 })
 export class SearchbarComponent {
-  // myControl = new FormControl('');
-  // options: string[] = ['One', 'Two', 'Three'];
-  
+  @Output() searchEvent = new EventEmitter<string>();
+
+  onSearch(event: any) {
+    const query = event.target.value;
+    this.searchEvent.emit(query); // Emit the search query to the parent component
+  }
 }
-
-
