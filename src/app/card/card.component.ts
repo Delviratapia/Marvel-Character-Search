@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 
@@ -13,6 +13,8 @@ standalone: true,
   imports: [MatCardModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {}
+export class CardComponent {
+  @Input() name: string = "default name";
+}
 
 

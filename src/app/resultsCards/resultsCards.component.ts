@@ -13,27 +13,21 @@ import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
 
 <div class="card-container">
 
-  <app-card/>
-  <app-card/>
-  <app-card/>
-  <app-card/>
-  <app-card/>
-  <app-card/>
-  <app-card/>
-      <app-card/>
-      <app-card/>
-      <app-card/>
-      <app-card/>
-      <app-card/>
-      <app-card/>
-      <app-card/>
+  @for(ch of characters.slice(pageStart(), pageStart()+pageSize); track characters) {
+    <app-card [name]="ch" />
+  }
       
 </div>
 
     
+<!-- TODO: fix so it stays in the bottom, not to the right of the cards -->
 <div class="paginator-container">
-
-  <mat-paginator/>
+  <mat-paginator 
+  (page)="handlePageEvent($event)"
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  />
 
 </div>
 
@@ -84,6 +78,31 @@ styles: `
 
 
 export class ResultsCardComponent {
+characters: string[] = [
+  "wolverine", "deadpool", "storm", "spiderman", "ironman", "thor", 
+  "hulk", "blackwidow", "captainamerica", "doctorstrange", "scarletwitch", 
+  "vision", "blackpanther", "antman", "wasp", "hawkeye", "falcon", 
+  "war-machine", "star-lord", "groot", "rocket"
+];
+
+
+
+  pageEvent: PageEvent | undefined;
+  length = this.characters.length
+  pageSize = 5
+  pageIndex = 0
+
+  handlePageEvent(event: PageEvent){
+    this.pageEvent = event
+    this.length = event.length
+    this.pageSize = event.pageSize
+    this.pageIndex = event.pageIndex
+  }
+
+  pageStart(): number {
+    return this.pageIndex * this.pageSize
+  }
+
     
 
 }
