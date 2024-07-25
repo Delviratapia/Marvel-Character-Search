@@ -17,27 +17,13 @@ type Response = {
   providedIn: 'root',
 })
 export class CharacterService {
-  async GetCharacters(): Promise<Character[]> {
-    let response = await fetch(this.GetUrl());
-    let responseJson: Response = await response.json();
-    return responseJson.data.results;
-  }
-
   async GetCharacter(searchString: string): Promise<Character[]> {
-    let response = await fetch(this.GetUrl2(searchString));
+    let response = await fetch(this.GetUrl(searchString));
     let responseJson: Response = await response.json();
     return responseJson.data.results;
   }
 
-  private GetUrl(): string {
-    const timestamp = new Date().getTime();
-    const hash = Md5.hashStr(
-      timestamp + environment.privateKey + environment.publicKey
-    );
-    return `${environment.baseUrl}/${environment.charactersEndpoint}?ts=${timestamp}&apikey=${environment.publicKey}&hash=${hash}`;
-  }
-
-  private GetUrl2(searchString: string): string {
+  private GetUrl(searchString: string): string {
     const timestamp = new Date().getTime();
     const hash = Md5.hashStr(
       timestamp + environment.privateKey + environment.publicKey

@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
           <span class="material-icons">menu</span>
         </button>
         <form>
-          <input type="text" placeholder="Search" (input)="onSearch($event)"/>
+          <input type="text" placeholder="Search" (input)="onSearch($event)" />
           <!-- <input type="text" placeholder="Search"> -->
           <button class="search-button">
             <span class="material-icons">search</span>
@@ -93,10 +93,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   `,
 })
 export class SearchbarComponent {
+  timeout: any;
   @Output() searchEvent = new EventEmitter<string>();
 
   onSearch(event: any) {
-    const query = event.target.value;
-    this.searchEvent.emit(query); // Emit the search query to the parent component
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+
+    this.timeout = setTimeout(() => {
+      const query = event.target.value;
+      this.searchEvent.emit(query); // Emit the search query to the parent component
+    }, 5000);
   }
 }

@@ -33,8 +33,6 @@ export class HomeComponent implements OnInit {
     if (lastSearch !== undefined) {
       this.filteredCharacters = lastSearch;
     }
-    // TODO: remove this
-    // this.characters = await this.charactersService.GetCharacters();
   }
 
   async handleSearch(query: string) {
