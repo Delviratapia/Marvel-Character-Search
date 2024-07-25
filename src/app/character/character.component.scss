@@ -1,22 +1,25 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 :host {
-  background-image: url("../../assets/images/heroes.jpg");
-  background-size: auto;
+  background-image: url("/images/characterbg.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 
-.card {
+.card {                   
     max-width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
   }
 
   .card-image {
@@ -25,3 +28,22 @@ border-radius: 50px;
 
   }
 
+  .stories-section div{
+   text-align: center;
+   
+    
+  }
+
+  .comics-section {
+    display: flex;
+    flex-direction: row;
+
+
+  }
+  .comic-container{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    
+  }

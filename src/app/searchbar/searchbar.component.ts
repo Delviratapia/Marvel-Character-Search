@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -32,13 +32,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   `,
   styles: `
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
   :host{
+    
     height:10%
 
   }
 
   .searchbar-items {
+    
       display: flex;
       justify-content: center;
       align-items: center;
@@ -52,6 +55,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     }
 
     .search-bar {
+      
       display: flex;
       height:10vh;
       justify-content: center;
@@ -59,6 +63,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     }
 
     input[type="text"] {
+      
       flex: 1;
       border: none;
       background: none;
@@ -79,6 +84,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     }
 
     .material-icons {
+      
       color: #666;
       font-size: 24px;
     }
