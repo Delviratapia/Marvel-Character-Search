@@ -18,24 +18,18 @@ type Response = {
 })
 export class CharacterService {
   async GetCharacters(): Promise<Character[]> {
-    const cache = this.GetCache();
-    if (cache) {
-      return cache;
-    }
-
     let response = await fetch(this.GetUrl());
     let responseJson: Response = await response.json();
+    return responseJson.data.results;
+  }
 
-    const characters = responseJson.data.results;
-    this.SetCache(characters);
-    return characters;
+  async GetCharacter(searchString: string): Promise<Character[]> {
+    let response = await fetch(this.GetUrl2(searchString));
+    let responseJson: Response = await response.json();
+    return responseJson.data.results;
   }
 
   private GetUrl(): string {
-    if (!environment.production) {
-      return `${environment.baseUrl}/${environment.charactersEndpoint}`;
-    }
-
     const timestamp = new Date().getTime();
     const hash = Md5.hashStr(
       timestamp + environment.privateKey + environment.publicKey
@@ -43,31 +37,14 @@ export class CharacterService {
     return `${environment.baseUrl}/${environment.charactersEndpoint}?ts=${timestamp}&apikey=${environment.publicKey}&hash=${hash}`;
   }
 
-  private GetCache(): Character[] | undefined {
-    let cached = localStorage.getItem('/characters');
-    if (!cached) {
-      return undefined;
-    }
-    let cache = JSON.parse(cached);
-
-    if (cache.expireDate < new Date().getTime()) {
-      localStorage.removeItem('/characters');
-      return undefined;
-    }
-
-    return cache.characters;
-  }
-
-  private SetCache(characters: Character[]) {
-    if (characters.length == 0) {
-      return;
-    }
-    localStorage.setItem(
-      '/characters',
-      JSON.stringify({
-        characters: characters,
-        expireDate: new Date().getTime() + environment.cacheExpirationTime,
-      })
+  private GetUrl2(searchString: string): string {
+    const timestamp = new Date().getTime();
+    const hash = Md5.hashStr(
+      timestamp + environment.privateKey + environment.publicKey
     );
+
+    let auth = `ts=${timestamp}&apikey=${environment.publicKey}&hash=${hash}`;
+    let queryParams = `${auth}&nameStartsWith=${searchString}`;
+    return `${environment.baseUrl}/${environment.charactersEndpoint}?${queryParams}`;
   }
 }

@@ -13,7 +13,10 @@ import { Character } from '../character/character';
   imports: [RouterOutlet, SearchbarComponent, ResultsCardComponent],
   template: `
     <app-searchbar (searchEvent)="handleSearch($event)" />
-    <app-resultsCard [characters]="filteredCharacters" [length]="filteredCharacters.length" />
+    <app-resultsCard
+      [characters]="filteredCharacters"
+      [length]="filteredCharacters.length"
+    />
   `,
   styleUrl: './home.component.scss',
 })
@@ -25,16 +28,45 @@ export class HomeComponent implements OnInit {
   charactersService = inject(CharacterService);
 
   async ngOnInit() {
-    this.characters = await this.charactersService.GetCharacters();
+    const lastSearch = this.getLastSearch();
+    console.log(lastSearch);
+    if (lastSearch !== undefined) {
+      this.filteredCharacters = lastSearch;
+    }
+    // TODO: remove this
+    // this.characters = await this.charactersService.GetCharacters();
   }
 
-  handleSearch(query: string) {
-    if(query.length === 0) {
-      this.filteredCharacters = []
-      return
+  async handleSearch(query: string) {
+    if (query.length === 0) {
+      this.filteredCharacters = [];
+      return;
     }
-    this.filteredCharacters = this.characters.filter((item) =>
-      item.name.toLowerCase().includes(query.toLowerCase())
-    );
+    this.filteredCharacters = await this.charactersService.GetCharacter(query);
+    // this.filteredCharacters = this.characters.filter((item) =>
+    //   item.name.toLowerCase().includes(query.toLowerCase())
+    // );
+    this.setLastSearch(this.filteredCharacters);
+  }
+
+  // remember state when changing pages
+  getLastSearch(): Character[] | undefined {
+    console.log('inside get');
+    const lastSearchJson = localStorage.getItem('lastSearch');
+    if (lastSearchJson === null) {
+      return undefined;
+    }
+
+    const lastSearch = JSON.parse(lastSearchJson);
+    localStorage.removeItem('lastSearch');
+    return lastSearch;
+  }
+
+  setLastSearch(search: Character[]) {
+    console.log('inside set');
+    if (search.length === 0) {
+      return;
+    }
+    localStorage.setItem('lastSearch', JSON.stringify(search));
   }
 }
