@@ -11,24 +11,31 @@ import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
   imports: [RouterOutlet, CardComponent, MatPaginatorModule],
   template: `
 
+<div class="card-container">
 
+  <app-card/>
+  <app-card/>
+  <app-card/>
+  <app-card/>
+  <app-card/>
+  <app-card/>
+  <app-card/>
+      <app-card/>
+      <app-card/>
+      <app-card/>
+      <app-card/>
+      <app-card/>
+      <app-card/>
+      <app-card/>
+      
+</div>
 
-<app-card/>
-<app-card/>
-<app-card/>
-<app-card/>
-<app-card/>
-<app-card/>
-<app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
-    <app-card/>
     
-    
-    
-    <mat-paginator/>
+<div class="paginator-container">
+
+  <mat-paginator/>
+
+</div>
 
   
   `,
@@ -41,15 +48,35 @@ styles: `
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width:80%;
-  max-height: 90%
+  max-height: 100%
+  
 
 }
+
+.paginator-container{
+
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin: 2rem;
+  padding:5px;
+
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+ 
+
+  
+}
+
 
 `,
 

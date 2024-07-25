@@ -31,8 +31,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 </div>
   `,
   styles: `
-  
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 
   :host{
     height:10%

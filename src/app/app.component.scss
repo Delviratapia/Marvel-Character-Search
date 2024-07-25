@@ -1,17 +1,7 @@
-
-$hotRod-red: #a50000;
-$captainAmerica-blue: #3268bd;
-$hulk-green: #00991f;
-$mjolnirThor-gray: #999999;
-$hawkeye-purple: #460061;
-
-
-
 :host {
-    height: 100%;
-    width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  margin: 0;
+
 }

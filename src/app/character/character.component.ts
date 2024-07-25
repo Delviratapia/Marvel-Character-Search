@@ -7,11 +7,11 @@ import {MatCardModule} from '@angular/material/card';
  * @title Card with multiple sections
  */
 @Component({
-  selector: 'app-profile-card',
-  templateUrl: './profile-card.component.html',
-  styleUrl: './profile-card.component.scss',
+  selector: 'app-character',
+  templateUrl: './character.component.html',
+  styleUrl: './character.component.scss',
   standalone: true,
   imports: [MatCardModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileCardComponent {}
+export class CharacterComponent {}
