@@ -30,8 +30,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   `,
 
   styles: `
-
-
 :host {
   display: flex;
   flex-wrap: wrap;

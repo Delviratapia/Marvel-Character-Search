@@ -43,6 +43,9 @@ export class CharacterService {
 
   async GetCharactersFromAPI(searchString: string): Promise<Character[]> {
     let response = await fetch(this.charactersUrl(searchString));
+    if (response.status !== 200) {
+      return new Promise(resolve => resolve([]))
+    }
     let responseJson: Response = await response.json();
     this.SetCharacters(responseJson.data.results);
     return responseJson.data.results;
@@ -50,6 +53,9 @@ export class CharacterService {
 
   async GetCharacterFromAPI(id: string): Promise<Character | undefined> {
     let response = await fetch(this.characterUrl(id));
+    if (response.status !== 200) {
+      return new Promise(resolve => resolve(undefined))
+    }
     let responseJson: Response = await response.json();
     if (responseJson.data.results.length === 0) {
       return undefined;
@@ -61,14 +67,15 @@ export class CharacterService {
     characterId: string
   ): Promise<Comic[] | undefined> {
     let response = await fetch(this.comicsUrl(characterId));
+    if (response.status !== 200) {
+      return new Promise(resolve => resolve(undefined))
+    }
     let responseJson: ResponseComics = await response.json();
     if (responseJson.data.results.length === 0) {
       return undefined;
     }
     return responseJson.data.results;
   }
-
-  //
 
   // async GetCharactersFromAPI(searchString: string): Promise<Character[]> {
   //  const res: Response = data as Response;
