@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Character, CharacterComics, Comic } from './character';
+import { Character } from '../types/character';
 import { Md5 } from 'ts-md5';
 import { environment } from '../../environments/environment.development';
 // TODO: delete these 2
 import * as data from '../../../characters.json';
 import * as data2 from '../../../characters detail.json';
 import * as data3 from '../../../characters comics.json';
+import { Comic } from '../types/comic';
 
 type Response = {
   code: number;
@@ -41,52 +42,51 @@ export class CharacterService {
     this.characters = characters;
   }
 
-  //TODO: uncomment this
-  // async GetCharactersFromAPI(searchString: string): Promise<Character[]> {
-  //   let response = await fetch(this.GetUrl(searchString));
-  //   let responseJson: Response = await response.json();
-  //   this.SetCharacters(responseJson.data.results);
-  //   return responseJson.data.results;
-  // }
-
-  // async GetCharacterFromAPI(id: string): Promise<Character | undefined> {
-  //   let response = await fetch(this.characterUrl(id));
-  //   let responseJson: Response = await response.json();
-  //   if (responseJson.data.results.length === 0) {
-  //     return undefined;
-  //   }
-  //   return responseJson.data.results[0];
-  // }
-
-  // async GetCharacterComicsFromAPI(
-  //   characterId: string
-  // ): Promise<Comic[] | undefined> {
-  //   let response = await fetch(this.comicsUrl(characterId));
-  //   let responseJson: ResponseComics = await response.json();
-  //   if (responseJson.data.results.length === 0) {
-  //     return undefined;
-  //   }
-  //   return responseJson.data.results;
-  // }
-
   async GetCharactersFromAPI(searchString: string): Promise<Character[]> {
-    const res: Response = data as Response;
-    this.SetCharacters(res.data.results);
-    return res.data.results;
+    let response = await fetch(this.charactersUrl(searchString));
+    let responseJson: Response = await response.json();
+    this.SetCharacters(responseJson.data.results);
+    return responseJson.data.results;
   }
 
   async GetCharacterFromAPI(id: string): Promise<Character | undefined> {
-    const res: Response = data2 as Response;
-    this.SetCharacters(res.data.results);
-    return res.data.results[0];
+    let response = await fetch(this.characterUrl(id));
+    let responseJson: Response = await response.json();
+    if (responseJson.data.results.length === 0) {
+      return undefined;
+    }
+    return responseJson.data.results[0];
   }
 
   async GetCharacterComicsFromAPI(
     characterId: string
   ): Promise<Comic[] | undefined> {
-    const res: ResponseComics = data3 as ResponseComics;
-    return res.data.results;
+    let response = await fetch(this.comicsUrl(characterId));
+    let responseJson: ResponseComics = await response.json();
+    if (responseJson.data.results.length === 0) {
+      return undefined;
+    }
+    return responseJson.data.results;
   }
+
+  // async GetCharactersFromAPI(searchString: string): Promise<Character[]> {
+  //   const res: Response = data as Response;
+  //   this.SetCharacters(res.data.results);
+  //   return res.data.results;
+  // }
+
+  // async GetCharacterFromAPI(id: string): Promise<Character | undefined> {
+  //   const res: Response = data2 as Response;
+  //   this.SetCharacters(res.data.results);
+  //   return res.data.results[0];
+  // }
+
+  // async GetCharacterComicsFromAPI(
+  //   characterId: string
+  // ): Promise<Comic[] | undefined> {
+  //   const res: ResponseComics = data3 as ResponseComics;
+  //   return res.data.results;
+  // }
 
   private charactersUrl(searchString: string): string {
     let queryParams = `${this.getAuth()}&nameStartsWith=${searchString}`;

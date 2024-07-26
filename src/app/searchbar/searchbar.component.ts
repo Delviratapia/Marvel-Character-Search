@@ -20,13 +20,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         <button class="menu-button">
           <span class="material-icons">menu</span>
         </button>
-        <form>
-          <input type="text" placeholder="Search" (input)="onSearch($event)" />
-          <!-- <input type="text" placeholder="Search"> -->
-          <button class="search-button">
-            <span class="material-icons">search</span>
-          </button>
-        </form>
+        <input type="text" placeholder="Search" (input)="onSearch($event)" />
+        <!-- <input type="text" placeholder="Search"> -->
+        <button class="search-button">
+          <span class="material-icons">search</span>
+        </button>
       </div>
     </div>
   `,

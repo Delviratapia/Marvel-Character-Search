@@ -4,7 +4,7 @@ import { CardComponent } from '../card/card.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { ResultsCardComponent } from '../resultsCards/resultsCards.component';
 import { CharacterService } from '../character/character.service';
-import { Character } from '../character/character';
+import { Character } from '../types/character';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
@@ -53,9 +53,6 @@ export class HomeComponent implements OnInit {
       query
     );
     this.loading = false;
-    // this.filteredCharacters = this.characters.filter((item) =>
-    //   item.name.toLowerCase().includes(query.toLowerCase())
-    // );
     this.setLastSearch(this.filteredCharacters);
   }
 

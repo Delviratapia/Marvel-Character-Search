@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardComponent } from '../card/card.component';
 import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
-import { Character } from '../character/character';
+import { Character } from '../types/character';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({

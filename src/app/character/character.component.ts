@@ -7,9 +7,11 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Character, CharacterComics, Comic } from './character';
+import { Character } from '../types/character';
+import { Comic, DateElement } from '../types/comic';
 import { CharacterService } from './character.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 /**
  * @title Card with multiple sections
@@ -19,13 +21,14 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, MatProgressSpinner],
 })
 export class CharacterComponent implements OnInit {
   character: Character | undefined;
   comics: Comic[] | undefined;
   characterService = inject(CharacterService);
   route = inject(ActivatedRoute);
+  loading = false;
 
   async ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
@@ -42,7 +45,6 @@ export class CharacterComponent implements OnInit {
     }
 
     this.character = character;
-
     let comics = await this.characterService.GetCharacterComicsFromAPI(id);
     if (comics === undefined) {
       console.log('comics not found');
@@ -50,7 +52,7 @@ export class CharacterComponent implements OnInit {
     }
 
     for (let comic of comics) {
-      comic.dates.map((date) => {
+      comic.dates.map((date: DateElement) => {
         date.date = date.date.split('T')[0];
       });
     }
@@ -64,15 +66,6 @@ export class CharacterComponent implements OnInit {
       }
       return false;
     });
-
-    // for (let c of comics) {
-    //   c.dates = c.dates.sort((a, b) => {
-    //     return (
-    //       new Date(a.date.split('T')[0]).getTime() -
-    //       new Date(b.date.split('T')[0]).getTime()
-    //     );
-    //   });
-    // }
 
     comics.sort((comicA, comicB) => {
       let dateA = '';

@@ -4,7 +4,7 @@
   <mat-card-header>
     <mat-card-title>Name: {{ character.name }}</mat-card-title>
     <mat-card-subtitle
-      >Last Modified: {{ character.modified }}</mat-card-subtitle
+      >Last Modified: {{ character.modified.split("T")[0] }}</mat-card-subtitle
     >
   </mat-card-header>
   <img
@@ -15,15 +15,11 @@
   <mat-card-content>
     <p>Description: {{ character.description }}</p>
 
-
-
     <h2>Stories</h2>
     <section class="stories-section">
       <div>
-        @for(story of character.stories.items; track story) {
-        <p>Name: {{ story.name }}</p>
-        <p>Type: {{ story.type }}</p>
-
+        @for(story of character.stories.items.slice(0, 5); track story) {
+        <p>{{ story.name }} - {{ story.type }}</p>
         }
       </div>
     </section>
@@ -32,20 +28,19 @@
     <h2>Comics</h2>
     <section class="comics-section">
       <div class="comic-container">
+        @if(comics) {
         <div>
           @for(comic of comics; track comic) {
           <h2>Title: {{ comic.title }}</h2>
-          <p>Publish Date: {{ comic.dates[0].date}}</p>
+          <p>Publish Date: {{ comic.dates[0].date }}</p>
           <img
             src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
           />
           }
         </div>
-        <!-- <img
-          class="card-image"
-          src="/images/shibaManga.jpg"
-          alt="comic-image"
-        /> -->
+        } @else {
+        <mat-spinner></mat-spinner>
+        }
       </div>
 
       <!-- <div class="comic-container">
@@ -99,4 +94,6 @@
   </mat-card-content>
 </mat-card>
 
+} @else {
+<mat-spinner />
 }
