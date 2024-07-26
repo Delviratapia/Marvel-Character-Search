@@ -54,15 +54,24 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 8rem;
   cursor: pointer;
-  height: 100px;
-  padding: 4px;
-  font-size: small;
-
-  p {
-    margin: 0 0 8px;
-
-    &:last-child {
-      margin: 0;
-    }
-  }
+  height: 11rem; /* Ajusta la altura según sea necesario */
+  font-size: xx-small;
+  display: flex;
+  flex-direction: column;
 }
+
+.container--mobile .card-image {
+  background-color: #f0f0f0;
+  border-radius: 8px 8px 0 0;
+  height: 11rem; /* Ajusta la altura de la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container--mobile .card-image img {
+  width: 100%; /* La imagen ocupa todo el ancho */
+  height: 100%; /* La imagen ocupa todo el alto */
+  object-fit: cover; /* Ajusta la imagen para cubrir el área */
+}
+

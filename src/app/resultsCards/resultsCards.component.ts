@@ -48,7 +48,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
   background-color: #f0f0f0;
   border-radius: 10px;
-  margin: 2rem;
+  margin: 1rem;
   padding:5px;
 
 }
