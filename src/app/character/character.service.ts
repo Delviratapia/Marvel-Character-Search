@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Character } from '../types/character';
 import { Md5 } from 'ts-md5';
 import { environment } from '../../environments/environment.development';
-// TODO: delete these 2
-import * as data from '../../../characters.json';
-import * as data2 from '../../../characters detail.json';
-import * as data3 from '../../../characters comics.json';
+// import * as data from '../../../characters.json';
+// import * as data2 from '../../../characters detail.json';
+// import * as data3 from '../../../characters comics.json';
 import { Comic } from '../types/comic';
 
 type Response = {

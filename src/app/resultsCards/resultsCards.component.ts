@@ -18,7 +18,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     </div>
 
     @if(charactersLength !== 0) {
-    <!-- TODO: fix so it stays in the bottom, not to the right of the cards -->
     <div class="paginator-container">
       <mat-paginator
         (page)="handlePageEvent($event)"
