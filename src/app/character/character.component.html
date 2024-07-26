@@ -1,6 +1,8 @@
-@if(character) {
+<div>
 
-<mat-card class="card" >
+  @if(character) {
+    
+    <mat-card class="card" >
   <mat-card-header>
     <mat-card-title>{{ character.name }}</mat-card-title>
     <mat-card-subtitle
@@ -11,8 +13,8 @@
     mat-card-image
     class="card-image"
     src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
-  />
-  <mat-card-content>
+    />
+    <mat-card-content>
     <p>{{ character.description }}</p>
 
     <h2>Stories</h2>
@@ -26,7 +28,7 @@
 
     <!-- TODO: call the comics api ordered by saleDate and given the character -->
     <h2>Comics</h2>
-    <section class="comics-section">
+    <section class="comic-section">
       <div class="comic-container">
         @if(comics) {
         
@@ -34,18 +36,21 @@
           <h3>{{ comic.title }}</h3>
           <p>Publish Date: {{ comic.dates[0].date }}</p>
           <img
-            src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
+          src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
           />
-          }
-        
-        } @else {
-        <mat-spinner></mat-spinner>
         }
-      </div>
-    </section>
-  </mat-card-content>
+        
+      } @else {
+        <mat-spinner></mat-spinner>
+      }
+    </div>
+  </section>
+</mat-card-content>
 </mat-card>
 
 } @else {
-<mat-spinner />
+  <div class="spinner-container">
+    <mat-spinner />
+    
+  </div>
 }
