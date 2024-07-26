@@ -22,7 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     }
     <app-resultsCard
       [characters]="filteredCharacters"
-      [length]="filteredCharacters.length"
+      [charactersLength]="filteredCharacters.length"
     />
   `,
   styleUrl: './home.component.scss',

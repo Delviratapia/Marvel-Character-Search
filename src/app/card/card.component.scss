@@ -1,7 +1,4 @@
-
-  // flex cards
-
-
+// flex cards
 
 .card {
   background-color: white;
@@ -9,38 +6,53 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  width: 12rem; 
   cursor: pointer;
+  max-width: 100%;
+  max-height: 100%;
+  height: 20rem;
 }
+
+
 
 .card-image {
   background-color: #f0f0f0;
-  height: 150px;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
+  height: 13rem; /* Fija la altura de la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Oculta cualquier desbordamiento */
+}
 
+.card-image img {
+  width: 100%; /* La imagen ocupa todo el ancho */
+  height: 100%; /* La imagen ocupa todo el alto */
+  object-fit: cover; /* Ajusta la imagen para cubrir el área */
 }
 
 .card-content {
-  padding: 16px;
-
-  p {
-    margin: 0 0 8px;
-
-    &:last-child {
-      margin: 0;
-    }
-
-    strong {
-      font-weight: bold;
-    }
-  }
+  padding: 1rem;/* Espacia el contenido de la tarjeta */
 }
 
-.container--mobile { 
+
+.card-content p {
+  font-size: larger;
+  margin: 0 0 8px;
+}
+
+// .card-content p:last-child {
+//   margin-top: 3rem;
+// }
+
+.card-content strong {
+  font-weight: bold;
+}
+
+.container--mobile {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 8rem; 
+  width: 8rem;
   cursor: pointer;
   height: 100px;
   padding: 4px;
@@ -52,6 +64,5 @@
     &:last-child {
       margin: 0;
     }
-
   }
 }

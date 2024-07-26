@@ -17,15 +17,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       }
     </div>
 
+    @if(charactersLength !== 0) {
     <!-- TODO: fix so it stays in the bottom, not to the right of the cards -->
     <div class="paginator-container">
       <mat-paginator
         (page)="handlePageEvent($event)"
-        [length]="length"
+        [length]="charactersLength"
         [pageSize]="pageSize"
         [pageIndex]="pageIndex"
       />
     </div>
+    }
   `,
 
   styles: `
@@ -59,22 +61,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   gap: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
- 
+
 }
 
 `,
 })
 export class ResultsCardComponent {
   @Input() characters: Character[] = [];
-  @Input() length: number = 0;
+  @Input() charactersLength: number = 0;
   pageEvent: PageEvent | undefined;
   pageSize = 5;
   pageIndex = 0;
 
   handlePageEvent(event: PageEvent) {
     this.pageEvent = event;
-    this.length = event.length;
+    this.charactersLength = event.length;
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
   }
