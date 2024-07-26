@@ -94,6 +94,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class SearchbarComponent {
   timeout: any;
+  keyUpWait = 1000;
   @Output() searchEvent = new EventEmitter<string>();
 
   onSearch(event: any) {
@@ -104,6 +105,6 @@ export class SearchbarComponent {
     this.timeout = setTimeout(() => {
       const query = event.target.value;
       this.searchEvent.emit(query); // Emit the search query to the parent component
-    }, 5000);
+    }, this.keyUpWait);
   }
 }

@@ -5,14 +5,22 @@ import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { ResultsCardComponent } from '../resultsCards/resultsCards.component';
 import { CharacterService } from '../character/character.service';
 import { Character } from '../character/character';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-
-  imports: [RouterOutlet, SearchbarComponent, ResultsCardComponent],
+  imports: [
+    RouterOutlet,
+    SearchbarComponent,
+    ResultsCardComponent,
+    MatProgressSpinnerModule,
+  ],
   template: `
     <app-searchbar (searchEvent)="handleSearch($event)" />
+    @if(loading) {
+    <mat-spinner></mat-spinner>
+    }
     <app-resultsCard
       [characters]="filteredCharacters"
       [length]="filteredCharacters.length"
@@ -22,6 +30,7 @@ import { Character } from '../character/character';
 })
 export class HomeComponent implements OnInit {
   title = 'angularMarvelApp';
+  loading = false;
 
   characters: Character[] = [];
   filteredCharacters: Character[] = [];
@@ -29,7 +38,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     const lastSearch = this.getLastSearch();
-    console.log(lastSearch);
     if (lastSearch !== undefined) {
       this.filteredCharacters = lastSearch;
     }
@@ -40,7 +48,11 @@ export class HomeComponent implements OnInit {
       this.filteredCharacters = [];
       return;
     }
-    this.filteredCharacters = await this.charactersService.GetCharacter(query);
+    this.loading = true;
+    this.filteredCharacters = await this.charactersService.GetCharactersFromAPI(
+      query
+    );
+    this.loading = false;
     // this.filteredCharacters = this.characters.filter((item) =>
     //   item.name.toLowerCase().includes(query.toLowerCase())
     // );
@@ -49,7 +61,6 @@ export class HomeComponent implements OnInit {
 
   // remember state when changing pages
   getLastSearch(): Character[] | undefined {
-    console.log('inside get');
     const lastSearchJson = localStorage.getItem('lastSearch');
     if (lastSearchJson === null) {
       return undefined;
@@ -61,7 +72,6 @@ export class HomeComponent implements OnInit {
   }
 
   setLastSearch(search: Character[]) {
-    console.log('inside set');
     if (search.length === 0) {
       return;
     }

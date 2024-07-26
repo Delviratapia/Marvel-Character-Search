@@ -1,95 +1,102 @@
+@if(character) {
+
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title>Hero</mat-card-title>
-    <mat-card-subtitle>Name</mat-card-subtitle>
-    <mat-card-subtitle>Date</mat-card-subtitle>
+    <mat-card-title>Name: {{ character.name }}</mat-card-title>
+    <mat-card-subtitle
+      >Last Modified: {{ character.modified }}</mat-card-subtitle
+    >
   </mat-card-header>
   <img
     mat-card-image
     class="card-image"
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
   />
   <mat-card-content>
-    <p>Description</p>
+    <p>Description: {{ character.description }}</p>
+
+
 
     <h2>Stories</h2>
     <section class="stories-section">
       <div>
-        <p>Titles</p>
-        <p>Titles</p>
-        <p>Titles</p>
-        <p>Titles</p>
-        <p>Titles</p>
-        <p>Titles</p>
+        @for(story of character.stories.items; track story) {
+        <p>Name: {{ story.name }}</p>
+        <p>Type: {{ story.type }}</p>
+
+        }
       </div>
     </section>
 
+    <!-- TODO: call the comics api ordered by saleDate and given the character -->
     <h2>Comics</h2>
     <section class="comics-section">
+      <div class="comic-container">
+        <div>
+          @for(comic of comics; track comic) {
+          <h2>Title: {{ comic.title }}</h2>
+          <p>Publish Date: {{ comic.dates[0].date}}</p>
+          <img
+            src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
+          />
+          }
+        </div>
+        <!-- <img
+          class="card-image"
+          src="/images/shibaManga.jpg"
+          alt="comic-image"
+        /> -->
+      </div>
 
-      
+      <!-- <div class="comic-container">
+        <div>
+          <p>Titles</p>
+          <p>Date</p>
+        </div>
+        <img
+          class="card-image"
+          src="/images/shibaManga.jpg"
+          alt="comic-image"
+        />
+      </div>
+
       <div class="comic-container">
         <div>
           <p>Titles</p>
           <p>Date</p>
         </div>
-          <img
-            class="card-image"
-            src="/images/shibaManga.jpg"
-            alt="comic-image"
-          />
+        <img
+          class="card-image"
+          src="/images/shibaManga.jpg"
+          alt="comic-image"
+        />
+      </div>
+
+      <div class="comic-container">
+        <div>
+          <p>Titles</p>
+          <p>Date</p>
         </div>
+        <img
+          class="card-image"
+          src="/images/shibaManga.jpg"
+          alt="comic-image"
+        />
+      </div>
 
-        <div class="comic-container">
-          <div>
-            <p>Titles</p>
-            <p>Date</p>
-          </div>
-            <img
-              class="card-image"
-              src="/images/shibaManga.jpg"
-              alt="comic-image"
-            />
-          </div>
-
-          <div class="comic-container">
-            <div>
-              <p>Titles</p>
-              <p>Date</p>
-            </div>
-              <img
-                class="card-image"
-                src="/images/shibaManga.jpg"
-                alt="comic-image"
-              />
-            </div>
-
-            <div class="comic-container">
-              <div>
-                <p>Titles</p>
-                <p>Date</p>
-              </div>
-                <img
-                  class="card-image"
-                  src="/images/shibaManga.jpg"
-                  alt="comic-image"
-                />
-              </div>
-
-              <div class="comic-container">
-                <div>
-                  <p>Titles</p>
-                  <p>Date</p>
-                </div>
-                  <img
-                    class="card-image"
-                    src="/images/shibaManga.jpg"
-                    alt="comic-image"
-                  />
-                </div>
-        
-      
-
+      <div class="comic-container">
+        <div>
+          <p>Titles</p>
+          <p>Date</p>
+        </div>
+        <img
+          class="card-image"
+          src="/images/shibaManga.jpg"
+          alt="comic-image"
+        />
+      </div> -->
     </section>
   </mat-card-content>
 </mat-card>
+
+}

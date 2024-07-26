@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CardComponent } from '../card/card.component';
 import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { Character } from '../character/character';
-import { CharacterService } from '../character/character.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-resultsCard',
@@ -70,7 +70,7 @@ import { CharacterService } from '../character/character.service';
 })
 export class ResultsCardComponent {
   @Input() characters: Character[] = [];
-  @Input() length:number = 0
+  @Input() length: number = 0;
   pageEvent: PageEvent | undefined;
   pageSize = 5;
   pageIndex = 0;
