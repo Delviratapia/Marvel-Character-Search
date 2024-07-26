@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CardComponent } from '../card/card.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { ResultsCardComponent } from '../resultsCards/resultsCards.component';
 import { CharacterService } from '../character/character.service';
@@ -37,6 +36,8 @@ export class HomeComponent implements OnInit {
   charactersService = inject(CharacterService);
 
   async ngOnInit() {
+
+    
     const lastSearch = this.getLastSearch();
     if (lastSearch !== undefined) {
       this.filteredCharacters = lastSearch;
@@ -74,4 +75,9 @@ export class HomeComponent implements OnInit {
     }
     localStorage.setItem('lastSearch', JSON.stringify(search));
   }
+
+
+
+
+
 }

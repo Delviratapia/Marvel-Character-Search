@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :host {
-  background-image: url("/images/characterbg.jpg");
+  background-color: white;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -11,6 +11,39 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+mat-card-title {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 12px;
+  box-shadow:
+    0 4px 8px rgba(0, 204, 255, 0.3),
+    0 8px 16px rgba(102, 255, 102, 0.3), 
+    0 12px 24px rgba(255, 102, 102, 0.3); 
+}
+
+mat-card-content {
+font-weight: lighter;
+font-style: italic;
+
+
+}
+
+h2  {
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    box-shadow:
+    0 4px 8px rgba(0, 204, 255, 0.3), 
+    0 8px 16px rgba(102, 255, 102, 0.3),
+}
+  
+
+h3 {
+  text-decoration-style: double;
+  box-shadow:
+  0 4px 8px rgba(0, 204, 255, 0.3),
+  0 8px 16px rgba(102, 255, 102, 0.3),
+}
+
 
 
 .card {                   
@@ -27,23 +60,14 @@ width: 15rem;
 border-radius: 50px;
 
   }
-
-  .stories-section div{
-   text-align: center;
-   
-    
-  }
-
-  .comics-section {
-    display: flex;
-    flex-direction: row;
-
-
-  }
+  
   .comic-container{
     display: flex;
     flex-direction: column;
     margin: 10px;
+  }
 
-    
+
+  .containerClasses {
+    padding: 5rem;
   }

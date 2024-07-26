@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-searchbar',
@@ -17,9 +18,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   template: `
     <div class="search-bar">
       <div class="searchbar-items">
-        <button class="menu-button">
-          <span class="material-icons">menu</span>
-        </button>
         <input type="text" placeholder="Search" (input)="onSearch($event)" />
         <!-- <input type="text" placeholder="Search"> -->
         <button class="search-button">
@@ -71,7 +69,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       font-size: 16px;
     }
 
-    .menu-button, .search-button {
+    .search-button {
       background: none;
       border: none;
       cursor: pointer;

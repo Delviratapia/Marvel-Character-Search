@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+
+
 /**
  * @title Configurable paginator
  */
@@ -24,6 +26,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
 })
 export class PaginatorConfigurableExample {
+
+
   length = 50;
   pageSize = 10;
   pageIndex = 0;

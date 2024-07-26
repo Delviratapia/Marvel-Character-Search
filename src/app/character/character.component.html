@@ -1,8 +1,8 @@
 @if(character) {
 
-<mat-card class="card">
+<mat-card class="card" >
   <mat-card-header>
-    <mat-card-title>Name: {{ character.name }}</mat-card-title>
+    <mat-card-title>{{ character.name }}</mat-card-title>
     <mat-card-subtitle
       >Last Modified: {{ character.modified.split("T")[0] }}</mat-card-subtitle
     >
@@ -13,7 +13,7 @@
     src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
   />
   <mat-card-content>
-    <p>Description: {{ character.description }}</p>
+    <p>{{ character.description }}</p>
 
     <h2>Stories</h2>
     <section class="stories-section">
@@ -29,67 +29,19 @@
     <section class="comics-section">
       <div class="comic-container">
         @if(comics) {
-        <div>
+        
           @for(comic of comics; track comic) {
-          <h2>Title: {{ comic.title }}</h2>
+          <h3>{{ comic.title }}</h3>
           <p>Publish Date: {{ comic.dates[0].date }}</p>
           <img
             src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
           />
           }
-        </div>
+        
         } @else {
         <mat-spinner></mat-spinner>
         }
       </div>
-
-      <!-- <div class="comic-container">
-        <div>
-          <p>Titles</p>
-          <p>Date</p>
-        </div>
-        <img
-          class="card-image"
-          src="/images/shibaManga.jpg"
-          alt="comic-image"
-        />
-      </div>
-
-      <div class="comic-container">
-        <div>
-          <p>Titles</p>
-          <p>Date</p>
-        </div>
-        <img
-          class="card-image"
-          src="/images/shibaManga.jpg"
-          alt="comic-image"
-        />
-      </div>
-
-      <div class="comic-container">
-        <div>
-          <p>Titles</p>
-          <p>Date</p>
-        </div>
-        <img
-          class="card-image"
-          src="/images/shibaManga.jpg"
-          alt="comic-image"
-        />
-      </div>
-
-      <div class="comic-container">
-        <div>
-          <p>Titles</p>
-          <p>Date</p>
-        </div>
-        <img
-          class="card-image"
-          src="/images/shibaManga.jpg"
-          alt="comic-image"
-        />
-      </div> -->
     </section>
   </mat-card-content>
 </mat-card>

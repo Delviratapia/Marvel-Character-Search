@@ -12,6 +12,8 @@ import { Comic, DateElement } from '../types/comic';
 import { CharacterService } from './character.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { NgClass } from '@angular/common';
+import { HostListener } from '@angular/core';
 
 /**
  * @title Card with multiple sections
@@ -21,9 +23,27 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatProgressSpinner],
+  imports: [MatCardModule, MatButtonModule, MatProgressSpinner,NgClass],
 })
 export class CharacterComponent implements OnInit {
+  screenWidth: number = window.innerWidth;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  get containerClasses() {
+    return {
+      'container': true,
+      'container--mobile': this.isMobileScreen(),
+      'container--desktop': !this.isMobileScreen()
+    };
+  }
+
+  isMobileScreen(): boolean {
+    return this.screenWidth <= 600;
+  }
   character: Character | undefined;
   comics: Comic[] | undefined;
   characterService = inject(CharacterService);
@@ -41,6 +61,7 @@ export class CharacterComponent implements OnInit {
 
     if (character === undefined) {
       console.log('character not found');
+      
       return;
     }
 
