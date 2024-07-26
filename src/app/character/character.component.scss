@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 :host {
   background-color: white;
@@ -15,59 +15,47 @@
 mat-card-title {
   border: 2px solid rgb(0, 0, 0);
   border-radius: 12px;
-  box-shadow:
-    0 4px 8px rgba(0, 204, 255, 0.3),
-    0 8px 16px rgba(102, 255, 102, 0.3), 
-    0 12px 24px rgba(255, 102, 102, 0.3); 
+  box-shadow: 0 4px 8px rgba(0, 204, 255, 0.3),
+    0 8px 16px rgba(102, 255, 102, 0.3), 0 12px 24px rgba(255, 102, 102, 0.3);
 }
 
 mat-card-content {
-font-weight: lighter;
-font-style: italic;
-
-
+  font-weight: lighter;
+  font-style: italic;
 }
 
-h2  {
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 12px;
-    box-shadow:
-    0 4px 8px rgba(0, 204, 255, 0.3), 
-    0 8px 16px rgba(102, 255, 102, 0.3),
+h2 {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 204, 255, 0.3),
+    0 8px 16px rgba(102, 255, 102, 0.3);
 }
-  
 
 h3 {
   text-decoration-style: double;
-  box-shadow:
-  0 4px 8px rgba(0, 204, 255, 0.3),
-  0 8px 16px rgba(102, 255, 102, 0.3),
+  box-shadow: 0 4px 8px rgba(0, 204, 255, 0.3),
+    0 8px 16px rgba(102, 255, 102, 0.3);
 }
 
+.card {
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
+.card-image {
+  width: 15rem;
+  border-radius: 50px;
+}
 
-.card {                   
-    max-width: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.comic-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
 
-  }
-
-  .card-image {
-width: 15rem;
-border-radius: 50px;
-
-  }
-  
-  .comic-container{
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-  }
-
-
-  .containerClasses {
-    padding: 5rem;
-  }
+.containerClasses {
+  padding: 5rem;
+}

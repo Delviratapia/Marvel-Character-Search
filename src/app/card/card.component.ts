@@ -12,11 +12,10 @@ import { NgClass } from '@angular/common';
   selector: 'app-card',
   template: `
     <div routerLink="character/{{ character.id }}" class="card" [ngClass]="containerClasses">
-      <div class="card-image"></div>
+      <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" class="card-image"/>
       <div class="card-content">
         <p>{{ character.name }}</p>
-
-        <p><strong>Date</strong></p>
+        <p><strong>Modified Date: {{ character.modified.split("T")[0] }}</strong></p>
       </div>
     </div>
   `,
