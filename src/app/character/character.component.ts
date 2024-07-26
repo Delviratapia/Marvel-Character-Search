@@ -1,8 +1,6 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
   OnInit,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,9 +13,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgClass } from '@angular/common';
 import { HostListener } from '@angular/core';
 
-/**
- * @title Card with multiple sections
- */
+
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',

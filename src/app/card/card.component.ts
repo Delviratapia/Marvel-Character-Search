@@ -5,9 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Character } from '../types/character';
 import { NgClass } from '@angular/common';
 
-/**
- * @title Card with multiple sections
- */
+
 @Component({
   selector: 'app-card',
   template: `

@@ -19,7 +19,6 @@ import { MatPaginator } from '@angular/material/paginator';
     <div class="search-bar">
       <div class="searchbar-items">
         <input type="text" placeholder="Search" (input)="onSearch($event)" />
-        <!-- <input type="text" placeholder="Search"> -->
         <button class="search-button">
           <span class="material-icons">search</span>
         </button>
