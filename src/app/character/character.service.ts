@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../types/character';
 import { Md5 } from 'ts-md5';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 // import * as data from '../../../characters.json';
 // import * as data2 from '../../../characters detail.json';
 // import * as data3 from '../../../characters comics.json';
